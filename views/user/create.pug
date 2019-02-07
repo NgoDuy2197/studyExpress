@@ -1,0 +1,24 @@
+extends ../layouts/common.pug
+
+block add-new
+	hr
+	a(href="/user") Back to main
+	hr
+	div.container.d-flex.flex-column.col-md-4
+		h1 create
+		if error
+			each err in error
+				.alert.alert-danger=err
+		form(action="/user/create" method="POST")
+			h4="ID: "
+				if(userInput)
+					span=userInput.id
+				else
+					span=idNew
+			input(name="id", type="text", value=userInput?userInput.id:"",hidden)
+			h4 Name
+			input(name="name", type="text", value=userInput?userInput.name:"")
+			h4 Address
+			input(name="address", type="text", value=userInput?userInput.address:"")
+			hr
+			input.btn.btn-success.mt-4(type="submit",value="Create")

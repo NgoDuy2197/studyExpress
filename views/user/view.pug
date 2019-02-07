@@ -1,0 +1,26 @@
+extends ../layouts/common.pug
+
+block view
+	hr
+	a(href="/user") Back to main
+	hr
+	div.container
+		h1 VIEW page
+		hr
+		div
+			table(border="1px").table.table-hover
+				tr
+					td
+						h4 ID:
+					td
+						h3=userInfo.id
+				tr
+					td
+						h4 Name:
+					td
+						h3=userInfo.name
+				tr
+					td
+						h4 Address:
+					td
+						h3=userInfo.address

@@ -1,0 +1,27 @@
+extends ../layouts/common.pug
+
+block search-page
+	div.container.p-3
+			h1 hello ADMIN
+			a(href="/user/create") Create
+			form(action="./user",method="GET").form-group.d-flex
+				input(name="q",class='form-control')
+				button(class='btn btn-success') submit
+			hr
+			div
+				h1 List user
+					div.d-flex
+						table.table.table-sm.table-hover.table-bordered
+							thead.thead-light.bg-dark.text-light
+								tr
+									td ID
+									td Name
+									td Action
+							tbody
+							each user in listOfUsers
+								tr
+									td=user.id
+									td=user.name
+									td
+										a(href="/user/"+user.id)
+											i.far.fa-eye

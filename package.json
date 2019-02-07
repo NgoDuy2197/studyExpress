@@ -1,0 +1,19 @@
+{
+  "name": "studyexpress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "duy",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "lowdb": "^1.0.0",
+    "pub": "^0.2.0",
+    "pug": "^2.0.3",
+    "supervisor": "^0.12.0"
+  }
+}
