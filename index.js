@@ -16,7 +16,7 @@ app.set("view engine","pug");
 app.set("views","./views");
 
 app.get("/",function(req, res){
-    res.send("<a href='/user'>To user page</a>");
+    res.send("<a href='/user' style='background-color:gray;color:white;border-radius:10px;cursor:pointer;text-decoration:none;padding:10px;'>To user page</a>");
 });
 
 app.use("/user",userRouter);
