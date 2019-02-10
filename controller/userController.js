@@ -11,7 +11,11 @@ module.exports.index = function(req,res){
     }else{
         listUserMeetRequirement = listOfUsers;
     }
-    res.render("./user/search",{listOfUsers: listUserMeetRequirement});
+    var headerColumn = [];
+    for(item in listUserMeetRequirement[0]){
+        headerColumn.push(item.toString());
+    }
+    res.render("./user/search",{listOfUsers: listUserMeetRequirement, headerColumn: headerColumn});
 };
 
 module.exports.createGET = function(req,res){
@@ -24,25 +28,14 @@ module.exports.createGET = function(req,res){
 module.exports.createPOST = function(req,res){
     var contentRequest = req.body;
     idNew = db.get("user").value().length+1;
-    contentRequest.id = idNew;
-    var err = [];
-
-    if(contentRequest.name == ""){
-        err.push("Name is null");
-    }
-    if(contentRequest.address == ""){
-        err.push("Address is null");
-    }
-
-    if(err.length > 0){
-        res.render("user/create",{error: err,userInput: contentRequest});
-        return;
-    }
+    
 
     var userToAdd = {
       "id": idNew,
       "name": contentRequest.name,
-      "address": contentRequest.address
+      "address": contentRequest.address,
+      "username": contentRequest.username,
+      "password": contentRequest.password
     };
     db.get("user").push(userToAdd).write();
     res.redirect("/user");

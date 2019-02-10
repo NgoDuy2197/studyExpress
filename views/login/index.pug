@@ -1,0 +1,17 @@
+extends ../layouts/common.pug
+
+block login
+	div.container
+		if error
+			div.container
+				p.text-danger WARNING
+				each err in error
+					div.alert-warning.m-1=err
+		h1.text-primary LOGIN
+		form(action='/login', method='post')
+			label.text-dark(for='username') Username
+			input.form-control(name='username',id='username',value=dataUserInput?dataUserInput.username:"")
+			label.text-dark(for='password') Password
+			input.form-control(name='password',id='password',value=dataUserInput?dataUserInput.password:"")
+			button.btn.btn-primary.m-4 submit
+	

@@ -14,9 +14,8 @@ block search-page
 						table.table.table-sm.table-hover.table-bordered
 							thead.thead-light.bg-dark.text-light
 								tr
-									td ID
-									td Name
-									td Action
+									each col in headerColumn
+										td=col
 							tbody
 							each user in listOfUsers
 								tr
