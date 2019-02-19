@@ -1,0 +1,61 @@
+extends ../layouts/common
+
+block productShow
+
+    //- intro
+    h1.alert-primary Product Page
+    
+    //- search and pagination
+    div.d-flex.justify-content-between
+        //- search
+        form.form-inline.p-4
+            input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
+            button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+
+        //- pagination
+        ul.pagination.p-4
+            if pagination.current==pagination.first
+                li.page-item.disabled
+                    span.page-link First
+            else
+                li.page-item
+                    a.page-link(href='?page='+pagination.first) First
+            li.page-item
+                if pagination.current==pagination.first
+                else
+                    a.page-link(href='?page='+pagination.pre)=pagination.pre
+            li.page-item.active
+                span.page-link=pagination.current
+            li.page-item
+                if pagination.current==pagination.last
+                else
+                    a.page-link(href='?page='+pagination.next)=pagination.next
+            if pagination.current==pagination.last
+                li.page-item.disabled
+                    span.page-link Last
+            else
+                li.page-item
+                    a.page-link(href='?page='+pagination.last) Last
+
+    //- content
+    .container
+        div.d-flex.justify-content-around
+            each item,index in products
+                if index%3==0
+                    br
+                br
+                div.col-md-4.img-thumbnail.m-4
+                    div.justify-content-center
+                        center
+                            img(src='https://loremflickr.com/240/240')
+                    div.text-light=item.id
+                    div.text-light.bg-dark=item.name
+                    div
+                        h3.text-success=item.amount
+                    div
+                        h4.text-warning=item.price+' $'                    
+                    div.text-secondary=item.describle
+                    div
+                        span.btn.btn-info.mt-4 View
+
+

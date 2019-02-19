@@ -18,7 +18,10 @@ module.exports.loginPOST = function(req,res){
 	if(user){
 		//Check pass
 		if(user.password == dataFromUser.password){
-			res.cookie('userLogined',dataFromUser.username);
+			res.cookie('userLogined',dataFromUser.username,{
+				signed: true
+			});
+			res.locals.userLogined = user;
 			res.render('./index');
 		}else{
 			if(dataFromUser.password != ""){

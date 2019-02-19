@@ -35,7 +35,8 @@ module.exports.createPOST = function(req,res){
       "name": contentRequest.name,
       "address": contentRequest.address,
       "username": contentRequest.username,
-      "password": contentRequest.password
+      "password": contentRequest.password,
+      "avatar": req.file.path.split('\\').slice(1).join("/")
     };
     db.get("user").push(userToAdd).write();
     res.redirect("/user");

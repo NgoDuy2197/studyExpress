@@ -16,11 +16,17 @@ block search-page
 								tr
 									each col in headerColumn
 										td=col
+									td ACTION
 							tbody
 							each user in listOfUsers
 								tr
 									td=user.id
+									td
+										img(src=user.avatar,width='64')
 									td=user.name
+									td=user.username
+									td=user.address
+									td=user.password
 									td
 										a(href="/user/"+user.id)
 											i.far.fa-eye

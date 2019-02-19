@@ -2,3 +2,8 @@ extends ./layouts/common.pug
 
 block index
 	h1 INDEX PAGE
+	h1 hello
+		if userLogined
+			span=userLogined.name
+		else
+			span default

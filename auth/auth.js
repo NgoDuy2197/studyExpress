@@ -1,9 +1,11 @@
 module.exports.authLogin = function(req,res,next){
-	if(req.cookies){
-		if(req.cookies.userLogined){
+	if(req.signedCookies){
+		if(req.signedCookies.userLogined){
 			next();
+			return;
 		}
 	}
-	res.render("./login/index");
+	// res.render("./login/index");
+	res.redirect('/login');
 	return;
 }

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express = require("express");
 var bodyParser = require('body-parser');
 var app = express();
@@ -7,15 +9,17 @@ var cookieParser = require('cookie-parser');
 
 var userRouter = require("./routes/user.route.js");
 var loginRouter = require("./routes/login.route.js");
+var productRouter = require("./routes/product.route.js");
 var auth = require("./auth/auth.js");
 
 var listOfUsers = db.get("user").value();
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(cookieParser());
+app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(express.static('public'));
-app.use("/user",userRouter);
+app.use("/user",auth.authLogin,userRouter);
+app.use("/product",auth.authLogin,productRouter);
 app.use("/login",loginRouter);
 
 app.set("view engine","pug");
